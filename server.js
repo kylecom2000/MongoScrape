@@ -16,8 +16,8 @@ app.use(express.static("public"));
 // });
 
 // Mongo y Mongoose
-const MONGOLAB_URI = process.env.MONGOLAB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGOLAB_URI, { useNewUrlParser: true });
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 const routes = require("./controllers/apiRoutes");
