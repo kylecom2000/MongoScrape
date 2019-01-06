@@ -18,6 +18,14 @@ var ArticleSchema = new Schema({
   note: {
     type: Schema.Types.ObjectId,
     ref: "Note"
+  },
+  image: {
+    type: String,
+    required: false
+  },
+  saved: {
+    type: Boolean,
+    default: false
   }
 });
 
