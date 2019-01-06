@@ -19,10 +19,10 @@ img {
   width: 300px;
 }
 
-#notes {
+/* #notes {
   float: right;
   width: 30%;
-}
+} */
 
 textarea, input {
   display: block;

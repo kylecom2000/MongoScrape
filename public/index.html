@@ -44,6 +44,38 @@
       <div id="notes"></div>
     </div>
 
+    <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="notesModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="noteTitle" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="titleinput"  name='title'>
+              </div>
+              <div class="form-group">
+                <label for="bodyinput" class="col-form-label">Note:</label>
+                <textarea class="form-control" id="bodyinput" name='body'></textarea>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="deleteNote">Delete Note</button>
+            <button type="button" class="btn btn-primary" id="savenote" data-dismiss="modal">Save Note</button>
+          </div>
+        </div>
+      </div>
+</div>
+
     <!-- JS to run on page after loading -->
     <script src="./js/app.js"></script>
   </body>

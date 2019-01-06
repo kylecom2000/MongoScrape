@@ -6,9 +6,9 @@ $.getJSON("/articles", function(data) {
     $("#articles").append("<div class='media' id='"+ data[i]._id + "'></div>")
     $(cssID).append("<img src='" + data[i].image + "' class='mr-3' alt='" + data[i].title + "'>");
     $(cssID).append("<div class='media-body'><h5><a href='" + data[i].link + "'>" + data[i].title + "</a></h5>" + data[i].summary + "</div>");
-    $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-id='" + data[i]._id + "'>NOTE</buttton><br>");
-    $(cssID).append("<br><button type='button' class='btn btn-success' id='saveArticle' data-id='" + data[i]._id + "'>SAVE</buttton><br>");
-    $("#articles").append("<br>");
+    $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
+    $(cssID).append("<br><button type='button' class='btn btn-success' id='saveArticle' data-id='" + data[i]._id + "'>SAVE</buttton>");
+    // $("#articles").append("<br>");
   }
 });
 
@@ -33,9 +33,9 @@ $(document).on("click", "#savedArticles", function() {
       $("#articles").append("<div class='media' id='"+ data[i]._id + "'></div>")
       $(cssID).append("<img src='" + data[i].image + "' class='mr-3' alt='" + data[i].title + "'>");
       $(cssID).append("<div class='media-body'><h5><a href='" + data[i].link + "'>" + data[i].title + "</a></h5>" + data[i].summary + "</div>");
-      $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-id='" + data[i]._id + "'>NOTE</buttton><br>");
-      $(cssID).append("<br><button type='button' class='btn btn-secondary' id='deleteOne' data-id='" + data[i]._id + "'>DELETE</buttton><br>");
-      $("#articles").append("<br>");
+      $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
+      $(cssID).append("<br><button type='button' class='btn btn-secondary' id='deleteOne' data-id='" + data[i]._id + "'>DELETE</buttton>");
+      // $("#articles").append("<br>");
     }
   })
 });
@@ -78,31 +78,28 @@ $(document).on("click", "#deleteOne", function() {
     })
   });
 
-
-
-
 // TODO - swithc this to somethign that floats above.
 $(document).on("click", "#note", function() {
-  $("#notes").empty();
+  $("#notesModalLabel").val("");
+  $("#titleinput").val("");
+  $("#bodyinput").val("");
+  $('#notesModal').modal('toggle')
   var thisId = $(this).attr("data-id");
   $.ajax({
     method: "GET",
     url: "/articles/" + thisId
   }).then(function(data) {
       console.log(data);
-      $("#notes").append("<h2>" + data.title + "</h2>");
-      $("#notes").append("<input id='titleinput' name='title' >");
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-
+      $("#notesModalLabel").text(data.title);
+      $("#deleteNote").attr("data-id", data._id);
+      $("#savenote").attr("data-id", data._id);
+      
       if (data.note) {
         $("#titleinput").val(data.note.title);
         $("#bodyinput").val(data.note.body);
       }
     });
 });
-
-
 
 $(document).on("click", "#savenote", function() {
   var thisId = $(this).attr("data-id");
