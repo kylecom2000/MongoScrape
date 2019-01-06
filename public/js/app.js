@@ -12,6 +12,7 @@ $.getJSON("/articles", function(data) {
   }
 });
 
+// SCRAPE
 $(document).on("click", "#scraper", function() {
   $.ajax({
     method: "GET",
@@ -101,20 +102,29 @@ $(document).on("click", "#note", function() {
     });
 });
 
+// Save/update note to database.
 $(document).on("click", "#savenote", function() {
   var thisId = $(this).attr("data-id");
   $.ajax({
     method: "POST",
-    url: "/articles/" + thisId,
+    url: "/notes/" + thisId,
     data: {
       title: $("#titleinput").val(),
       body: $("#bodyinput").val()
     }
   }).then(function(data) {
       console.log(data);
-      $("#notes").empty();
     });
+});
 
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
+// Delete note
+$(document).on("click", "#deleteNote", function() {
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "DELETE",
+    url: "/notes/" + thisId
+  })
+  .then(function(data){
+    console.log(data)
+  })
 });

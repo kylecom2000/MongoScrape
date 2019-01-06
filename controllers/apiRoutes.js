@@ -89,7 +89,7 @@ const cheerio = require("cheerio");
   });
   
   // update artticle on DB with not ID
-  app.post("/articles/:id", function(req, res) {
+  app.post("/notes/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
         return db.Article.findByIdAndUpdate(req.params.id, { note: dbNote._id });
@@ -102,20 +102,21 @@ const cheerio = require("cheerio");
       })
   });
 
-  // create note for article
-  app.post("/articles/:id", function(req, res) {
-    db.Note.create(req.body)
-      .then(function(dbNote) {
-        return db.Article.findByIdAndUpdate(req.params.id, { note: dbNote._id });
-      })
-      .then(function(dbArticle){
-        res.json(dbArticle);
-      })
-      .catch(function(err){
-        res.json(err);
-      })
+  // delete note for article
+  app.delete("/notes/:id", function(req, res) {
+    db.Note.deleteOne(req.body)
+    .then(function(dbNote){
+      return db.Article.findByIdAndUpdate(req.params.id, { note: dbNote._id });
+    })
+    .then(function(deleted){
+      res.json(deleted);
+    })
+    .catch(function(err){
+      res.json(err);
+    })
   });
 
+  // Delete one article from DB.
   app.delete("/articles/deleteOne/:id", function(req, res){
     db.Article.findByIdAndDelete({_id: req.params.id})
     .then(function(deleted){
@@ -126,6 +127,8 @@ const cheerio = require("cheerio");
     })
   })
 
+
+  // Delete all articles except saved articles from DB.
   app.delete("/articles/deleteAll", function(req, res){
     db.Article.deleteMany({ saved: false })
     .then(function(deleted){
