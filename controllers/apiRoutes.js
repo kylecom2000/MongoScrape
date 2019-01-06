@@ -4,6 +4,10 @@ const express = require("express");
 const app = express();
 const cheerio = require("cheerio");
 
+  // Scrape route, saves to results, 
+  // creates article from model, 
+  // saves to DB, 
+  // returns dbArticle to app.js
   app.get("/scrape", function(req, res) {
     axios.get("http://www.npr.org").then(function(response) {
       let $ = cheerio.load(response.data);
@@ -44,6 +48,7 @@ const cheerio = require("cheerio");
     });
   });
 
+  // Get saved articles
   app.get("/articles/savedArticles", function(req, res){
     db.Article.find({
       saved: true
@@ -52,7 +57,19 @@ const cheerio = require("cheerio");
       res.json(dbSavedArticles);
     })
   });
+
+  // Save articles
+  app.post("/articles/saveOneArticle/:id", function(req, res){
+    db.Article.findByIdAndUpdate(req.params.id, { saved: true })
+    .then(function(dbSavedArticle){
+      res.json(dbSavedArticle);
+    })
+    .catch(function(err){
+      res.json(err);
+    })
+  });
   
+  // Get articles for main page.
   app.get("/articles", function(req, res) {
     db.Article.find({
       saved: false
@@ -62,6 +79,7 @@ const cheerio = require("cheerio");
     })
   });
   
+  // get notes from db and populate for this ID
   app.get("/articles/:id", function(req, res) {
     db.Article.findOne({ _id: req.params.id})
     .populate("note")
@@ -70,6 +88,7 @@ const cheerio = require("cheerio");
     })
   });
   
+  // update artticle on DB with not ID
   app.post("/articles/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
@@ -83,6 +102,7 @@ const cheerio = require("cheerio");
       })
   });
 
+  // create note for article
   app.post("/articles/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
@@ -98,6 +118,16 @@ const cheerio = require("cheerio");
 
   app.delete("/articles/deleteOne/:id", function(req, res){
     db.Article.findByIdAndDelete({_id: req.params.id})
+    .then(function(deleted){
+      res.json(deleted);
+    })
+    .catch(function(err){
+      res.json(err);
+    })
+  })
+
+  app.delete("/articles/deleteAll", function(req, res){
+    db.Article.deleteMany({ saved: false })
     .then(function(deleted){
       res.json(deleted);
     })

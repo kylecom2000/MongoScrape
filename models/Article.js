@@ -21,7 +21,8 @@ var ArticleSchema = new Schema({
   },
   image: {
     type: String,
-    required: false
+    required: false,
+    default: "/images/npr.png"
   },
   saved: {
     type: Boolean,
