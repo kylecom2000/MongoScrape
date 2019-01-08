@@ -6,8 +6,8 @@ $.getJSON("/articles", function(data) {
     $("#articles").append("<div class='media' id='"+ data[i]._id + "'></div>")
     $(cssID).append("<img src='" + data[i].image + "' class='mr-3' alt='" + data[i].title + "'>");
     $(cssID).append("<div class='media-body'><h5><a href='" + data[i].link + "'>" + data[i].title + "</a></h5>" + data[i].summary + "</div>");
-    $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
-    $(cssID).append("<br><button type='button' class='btn btn-success' id='saveArticle' data-id='" + data[i]._id + "'>SAVE</buttton>");
+    $(cssID).append("<button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
+    $(cssID).append("<button type='button' class='btn btn-success' id='saveArticle' data-id='" + data[i]._id + "'>SAVE</buttton>");
   }
 });
 
@@ -38,8 +38,8 @@ $(document).on("click", "#savedArticlesBtn", function() {
       $("#articles").append("<div class='media' id='"+ data[i]._id + "'></div>")
       $(cssID).append("<img src='" + data[i].image + "' class='mr-3' alt='" + data[i].title + "'>");
       $(cssID).append("<div class='media-body'><h5><a href='" + data[i].link + "'>" + data[i].title + "</a></h5>" + data[i].summary + "</div>");
-      $(cssID).append("<br><button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
-      $(cssID).append("<br><button type='button' class='btn btn-secondary' id='deleteOne' data-id='" + data[i]._id + "'>DELETE</buttton>");
+      $(cssID).append("<button type='button' class='btn btn-warning' id='note' data-toggle='modal data-target='#notesModal' data-id='" + data[i]._id + "'>NOTE</buttton>");
+      $(cssID).append("<button type='button' class='btn btn-secondary' id='deleteOne' data-id='" + data[i]._id + "'>DELETE</buttton>");
       // $("#articles").append("<br>");
     }
   })

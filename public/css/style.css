@@ -17,6 +17,7 @@ h1 {
   margin-right: auto;
   padding-top: 5%;
 }
+
 #instAndButttons{
   width: 100%;
   text-align: center;
@@ -34,7 +35,7 @@ h1 {
 
 .media {
   padding: 10px;
-  color: white;
+  color: rgba(255, 255, 255, 0.639);
 }
 
 #articles h6 {
