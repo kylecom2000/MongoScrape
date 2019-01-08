@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">Mongo News Scraper (npr.org)</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,22 +27,24 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="scraper">Retrieve New Articles</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="savedArticles">Saved Articles</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="deleteAll">Clear All</a>
+                <a class="nav-link" id="savedArticlesBtn">Saved Articles</a>
               </li>
             </ul>
           </div>
       </nav>
-
-    <div id="wrapper">
-        <h4><i>Click "Retrieve New Articles" to get new articles from NPR.org.</i></h4>
-      <div id="articles"></div>
-      <div id="notes"></div>
+    
+    <div class="container-fluid">
+    <!-- <div id="wrapper"> -->
+        
+      <div id="articles">
+          <h5><i>Click "Retrieve New Articles" to get new articles from NPR.org.</i></h5>
+          <h5><i>Save each article and/or add notes to each article.</i></h5>
+          <button type="button" class="btn btn-danger" id="scraper">Retrieve New Articles</button>
+          <button type="button" class="btn btn-info" id="deleteAll">Clear Unsaved Articles</button>
+          <button type="button" class="btn btn-info" id="nprORG">NPR.org</button>
+          <br>
+          <br>
+      </div>
     </div>
 
     <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
@@ -74,8 +77,8 @@
           </div>
         </div>
       </div>
-</div>
-
+    </div>
+  </div>
     <!-- JS to run on page after loading -->
     <script src="./js/app.js"></script>
   </body>

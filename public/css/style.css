@@ -1,11 +1,23 @@
 
 body { background-color: #F2F6D0 }
 
-#wrapper {
-  width: 960px;
+.container-fluid {
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 5%;
+}
+
+#scraper {
+  background-color: #F15B1C;
+}
+
+#deleteAll {
+  background-color: #00000F;
+}
+
+#nprORG {
+  background-color: #4C85C5;
 }
 
 /* #articles {
@@ -15,8 +27,8 @@ body { background-color: #F2F6D0 }
   height: 700px;
 } */
 
-img {
-  width: 300px;
+.container-fluid img {
+  max-width: 300px;
 }
 
 /* #notes {
