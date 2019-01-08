@@ -35,10 +35,18 @@ This application requests the html code from NPR.org using Axios, searches and p
   * Landing Page
     * Route to Articles
   * Retrieve Articles
-    * Email Address
-    * Username
-    * Password
-    * Route to Login on Submit
+    * Get route
+    * HTML to cheerio
+    * Article information to DB
+    * HTML manipulation on display
+  * Saved Articles
+    * Get route
+    * Asks DB for articles where saved boolean is true
+    * Manipulates HTML to display only saved articles
   * Note Button
+    * Get route checking database if note exists for article ID
+    * Saves note, sends to DB
   * Save Button
+    * Changes "saved" booleon to true with a get route
   * Delete Button
+    * Removes article from page and DB.
